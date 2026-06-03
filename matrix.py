@@ -4,6 +4,7 @@ def input_matrix():
 
     matrix = []
     print("Masukkan elemen matriks:")
+
     for i in range(rows):
         row = list(map(int, input(f"Baris {i+1}: ").split()))
         matrix.append(row)
@@ -18,7 +19,7 @@ def print_matrix(matrix):
     print()
 
 
-# 1.Sort Row Wise
+# 1. Sort Row Wise
 def sort_row_wise(matrix):
     return [sorted(row) for row in matrix]
 
@@ -38,7 +39,7 @@ def sort_column_wise(matrix):
     return matrix
 
 
-# 3. Rotate Clockwise by 1 (geser elemen)
+# 3. Rotate Clockwise by 1
 def rotate_clockwise_by_one(matrix):
     rows = len(matrix)
     cols = len(matrix[0])
@@ -100,19 +101,21 @@ def row_wise_traversal(matrix):
     for row in matrix:
         for item in row:
             print(item, end=" ")
-    print()
+    print("\n")
 
 
 # 8. Column Wise Traversal
 def column_wise_traversal(matrix):
     print("Column-wise Traversal:")
+
     rows = len(matrix)
     cols = len(matrix[0])
 
     for j in range(cols):
         for i in range(rows):
             print(matrix[i][j], end=" ")
-    print()
+
+    print("\n")
 
 
 # 9. Spiral Print
@@ -144,19 +147,22 @@ def spiral_print(matrix):
                 print(matrix[i][left], end=" ")
             left += 1
 
-    print()
+    print("\n")
 
 
-# 10. Transpose
+# 10. Transpose Matrix
 def transpose_matrix(matrix):
     return [list(row) for row in zip(*matrix)]
 
 
-# Main Program
-matrix = input_matrix()
+# =====================
+# MAIN PROGRAM
+# =====================
+
+matrix_asli = input_matrix()
 
 while True:
-    print("\n===== MENU MATRIX =====")
+    print("===== MENU MATRIX =====")
     print("1. Sort Matrix Row-wise")
     print("2. Sort Matrix Column-wise")
     print("3. Rotate Matrix Clockwise by 1")
@@ -172,41 +178,41 @@ while True:
     choice = input("Pilih menu: ")
 
     if choice == "1":
-        matrix = sort_row_wise(matrix)
-        print_matrix(matrix)
+        hasil = sort_row_wise([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "2":
-        matrix = sort_column_wise(matrix)
-        print_matrix(matrix)
+        hasil = sort_column_wise([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "3":
-        matrix = rotate_clockwise_by_one(matrix)
-        print_matrix(matrix)
+        hasil = rotate_clockwise_by_one([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "4":
-        matrix = rotate_counter_clockwise_by_one(matrix)
-        print_matrix(matrix)
+        hasil = rotate_counter_clockwise_by_one([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "5":
-        matrix = rotate_90(matrix)
-        print_matrix(matrix)
+        hasil = rotate_90([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "6":
-        matrix = rotate_180(matrix)
-        print_matrix(matrix)
+        hasil = rotate_180([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "7":
-        row_wise_traversal(matrix)
+        row_wise_traversal(matrix_asli)
 
     elif choice == "8":
-        column_wise_traversal(matrix)
+        column_wise_traversal(matrix_asli)
 
     elif choice == "9":
-        spiral_print(matrix)
+        spiral_print(matrix_asli)
 
     elif choice == "10":
-        matrix = transpose_matrix(matrix)
-        print_matrix(matrix)
+        hasil = transpose_matrix([row[:] for row in matrix_asli])
+        print_matrix(hasil)
 
     elif choice == "11":
         print("Program selesai.")
