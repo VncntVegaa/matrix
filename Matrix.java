@@ -6,28 +6,45 @@ public class Matrix {
     static Scanner input = new Scanner(System.in);
 
     public static void printMatrix(int[][] matrix) {
-        System.out.println("\nMatrix:");
+        System.out.println("\nMatriks:");
         for (int[] row : matrix) {
             for (int value : row) {
                 System.out.print(value + "\t");
             }
             System.out.println();
         }
+        System.out.println();
     }
 
-    // 1-a Sort Row Wise
+    public static int[][] copyMatrix(int[][] matrix) {
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+
+        int[][] copy = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                copy[i][j] = matrix[i][j];
+            }
+        }
+
+        return copy;
+    }
+
+    // 1. Sort Row Wise
     public static void sortRowWise(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             Arrays.sort(matrix[i]);
         }
     }
 
-    // 1-b Sort Column Wise
+    // 2. Sort Column Wise
     public static void sortColumnWise(int[][] matrix) {
         int rows = matrix.length;
         int cols = matrix[0].length;
 
         for (int j = 0; j < cols; j++) {
+
             int[] temp = new int[rows];
 
             for (int i = 0; i < rows; i++) {
@@ -42,8 +59,9 @@ public class Matrix {
         }
     }
 
-    // 2-a Rotate Clockwise by 1
+    // 3. Rotate Clockwise by 1
     public static void rotateClockwiseByOne(int[][] matrix) {
+
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -67,8 +85,9 @@ public class Matrix {
         matrix[0][1] = temp;
     }
 
-    // 2-b Rotate Counter Clockwise by 1
+    // 4. Rotate Counter Clockwise by 1
     public static void rotateCounterClockwiseByOne(int[][] matrix) {
+
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -92,8 +111,9 @@ public class Matrix {
         matrix[1][0] = temp;
     }
 
-    // 2-c Rotate 90°
+    // 5. Rotate 90 Derajat
     public static int[][] rotate90(int[][] matrix) {
+
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -108,8 +128,9 @@ public class Matrix {
         return result;
     }
 
-    // 2-d Rotate 180°
+    // 6. Rotate 180 Derajat
     public static int[][] rotate180(int[][] matrix) {
+
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -124,19 +145,23 @@ public class Matrix {
         return result;
     }
 
-    // 3-a Row Wise Traversal
+    // 7. Row Wise Traversal
     public static void rowWiseTraversal(int[][] matrix) {
+
         System.out.println("Row Wise Traversal:");
+
         for (int[] row : matrix) {
             for (int value : row) {
                 System.out.print(value + " ");
             }
         }
-        System.out.println();
+
+        System.out.println("\n");
     }
 
-    // 3-b Column Wise Traversal
+    // 8. Column Wise Traversal
     public static void columnWiseTraversal(int[][] matrix) {
+
         System.out.println("Column Wise Traversal:");
 
         for (int j = 0; j < matrix[0].length; j++) {
@@ -144,11 +169,13 @@ public class Matrix {
                 System.out.print(matrix[i][j] + " ");
             }
         }
-        System.out.println();
+
+        System.out.println("\n");
     }
 
-    // 4 Spiral Form
+    // 9. Spiral Print
     public static void spiralPrint(int[][] matrix) {
+
         int top = 0;
         int bottom = matrix.length - 1;
         int left = 0;
@@ -160,30 +187,35 @@ public class Matrix {
 
             for (int i = left; i <= right; i++)
                 System.out.print(matrix[top][i] + " ");
+
             top++;
 
             for (int i = top; i <= bottom; i++)
                 System.out.print(matrix[i][right] + " ");
+
             right--;
 
             if (top <= bottom) {
                 for (int i = right; i >= left; i--)
                     System.out.print(matrix[bottom][i] + " ");
+
                 bottom--;
             }
 
             if (left <= right) {
                 for (int i = bottom; i >= top; i--)
                     System.out.print(matrix[i][left] + " ");
+
                 left++;
             }
         }
 
-        System.out.println();
+        System.out.println("\n");
     }
 
-    // 5 Transpose
+    // 10. Transpose
     public static int[][] transpose(int[][] matrix) {
+
         int rows = matrix.length;
         int cols = matrix[0].length;
 
@@ -206,20 +238,21 @@ public class Matrix {
         System.out.print("Jumlah kolom: ");
         int cols = input.nextInt();
 
-        int[][] matrix = new int[rows][cols];
+        int[][] matrixAsli = new int[rows][cols];
 
         System.out.println("Masukkan elemen matrix:");
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                matrix[i][j] = input.nextInt();
+                matrixAsli[i][j] = input.nextInt();
             }
         }
 
         int pilihan;
 
         do {
-            System.out.println("\n===== MENU MATRIX =====");
+
+            System.out.println("===== MENU MATRIX =====");
             System.out.println("1. Sort Matrix Row-wise");
             System.out.println("2. Sort Matrix Column-wise");
             System.out.println("3. Rotate Matrix Clockwise by 1");
@@ -235,53 +268,55 @@ public class Matrix {
 
             pilihan = input.nextInt();
 
+            int[][] hasil = copyMatrix(matrixAsli);
+
             switch (pilihan) {
 
                 case 1:
-                    sortRowWise(matrix);
-                    printMatrix(matrix);
+                    sortRowWise(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 2:
-                    sortColumnWise(matrix);
-                    printMatrix(matrix);
+                    sortColumnWise(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 3:
-                    rotateClockwiseByOne(matrix);
-                    printMatrix(matrix);
+                    rotateClockwiseByOne(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 4:
-                    rotateCounterClockwiseByOne(matrix);
-                    printMatrix(matrix);
+                    rotateCounterClockwiseByOne(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 5:
-                    matrix = rotate90(matrix);
-                    printMatrix(matrix);
+                    hasil = rotate90(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 6:
-                    matrix = rotate180(matrix);
-                    printMatrix(matrix);
+                    hasil = rotate180(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 7:
-                    rowWiseTraversal(matrix);
+                    rowWiseTraversal(matrixAsli);
                     break;
 
                 case 8:
-                    columnWiseTraversal(matrix);
+                    columnWiseTraversal(matrixAsli);
                     break;
 
                 case 9:
-                    spiralPrint(matrix);
+                    spiralPrint(matrixAsli);
                     break;
 
                 case 10:
-                    matrix = transpose(matrix);
-                    printMatrix(matrix);
+                    hasil = transpose(hasil);
+                    printMatrix(hasil);
                     break;
 
                 case 11:
